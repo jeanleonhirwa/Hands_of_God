@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apple HIG Base Styles */
+@layer base {
+  :root {
+    --color-system-blue: #007AFF;
+    --color-system-red: #FF3B30;
+    --color-system-green: #34C759;
+    --color-bg-primary: #FFFFFF;
+    --color-bg-secondary: #F2F2F7;
+    --color-label-primary: #000000;
+    --color-label-secondary: rgba(60, 60, 67, 0.6);
+    --color-separator: rgba(60, 60, 67, 0.12);
+    
+    /* Materials (blur backgrounds) */
+    --material-regular: rgba(255, 255, 255, 0.72);
+    --material-thick: rgba(255, 255, 255, 0.85);
+  }
+
+  .dark {
+    --color-system-blue: #0A84FF;
+    --color-system-red: #FF453A;
+    --color-system-green: #30D158;
+    --color-bg-primary: #000000;
+    --color-bg-secondary: #1C1C1E;
+    --color-label-primary: #FFFFFF;
+    --color-label-secondary: rgba(235, 235, 245, 0.6);
+    --color-separator: rgba(84, 84, 88, 0.65);
+    
+    --material-regular: rgba(30, 30, 30, 0.72);
+    --material-thick: rgba(30, 30, 30, 0.85);
+  }
+
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 
+                 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg-primary text-label-primary;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* Tauri window drag region */
+  [data-tauri-drag-region] {
+    -webkit-app-region: drag;
+  }
+
+  /* Scrollbar styling (Apple-like) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-label-secondary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-label-primary);
+  }
+}
+
+@layer components {
+  /* Apple-style button */
+  .btn-primary {
+    @apply px-4 py-2 bg-system-blue text-white rounded-apple font-medium;
+    @apply transition-all duration-150 ease-apple-ease;
+    @apply hover:opacity-90 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-5 dark:bg-gray-4 text-label-primary rounded-apple font-medium;
+    @apply transition-all duration-150 ease-apple-ease;
+    @apply hover:bg-gray-4 dark:hover:bg-gray-3 active:scale-[0.98];
+  }
+
+  .btn-destructive {
+    @apply px-4 py-2 bg-system-red text-white rounded-apple font-medium;
+    @apply transition-all duration-150 ease-apple-ease;
+    @apply hover:opacity-90 active:scale-[0.98];
+  }
+
+  /* Apple-style input */
+  .input {
+    @apply w-full px-3 py-2 bg-gray-6 dark:bg-gray-5 rounded-apple;
+    @apply text-body text-label-primary placeholder:text-label-tertiary;
+    @apply border border-transparent focus:border-system-blue focus:outline-none;
+    @apply transition-all duration-150 ease-apple-ease;
+  }
+
+  /* Apple-style card */
+  .card {
+    @apply bg-bg-tertiary rounded-apple-lg shadow-apple;
+    @apply border border-gray-5 dark:border-gray-4;
+  }
+
+  /* Grouped list (iOS settings style) */
+  .list-grouped {
+    @apply bg-bg-tertiary rounded-apple-lg overflow-hidden;
+  }
+
+  .list-grouped-item {
+    @apply px-4 py-3 flex items-center justify-between;
+    @apply border-b border-gray-5 dark:border-gray-4 last:border-b-0;
+    @apply hover:bg-gray-6 dark:hover:bg-gray-5 transition-colors;
+  }
+
+  /* Material background (glassmorphism) */
+  .material {
+    background: var(--material-regular);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .material-thick {
+    background: var(--material-thick);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+  }
+
+  /* Sidebar */
+  .sidebar {
+    @apply h-full bg-bg-secondary border-r border-gray-5 dark:border-gray-4;
+    @apply flex flex-col;
+  }
+
+  /* Activity indicator */
+  .activity-dot {
+    @apply w-2 h-2 rounded-full bg-system-green animate-pulse;
+  }
+}
+
+@layer utilities {
+  /* Apple-style text selection */
+  .select-text {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  /* Safe area padding for notched devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
