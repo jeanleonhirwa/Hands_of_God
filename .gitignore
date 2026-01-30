@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+target/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Rust
+Cargo.lock
+**/*.rs.bk
+
+# Tauri
+desktop/src-tauri/target/
+desktop/src-tauri/WixTools/
+desktop/src-tauri/icons/*.ico
+desktop/src-tauri/icons/*.icns
+
+# MCP data
+.mcp/
+*.db
+*.db-shm
+*.db-wal
+
+# Temporary files
+tmp_rovodev_*
+*.tmp
+*.temp
