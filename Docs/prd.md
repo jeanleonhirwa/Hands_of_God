@@ -400,7 +400,7 @@ Phase 2
 
 ---
 
-## 13 — Handoff notes for Cursor 
+## 13 — Handoff notes for ai agent
 
 * Repo layout:
 
@@ -427,7 +427,7 @@ Phase 2
 
 ---
 
-## 15 — Example user story + RPC exchange (fast)
+## 15 — Example user stories + RPC exchange (fast)
 
 User: “Create a Node + React skeleton for `hop-n-splat`, open it in VSCode, run dev server.”
 
@@ -437,6 +437,130 @@ User: “Create a Node + React skeleton for `hop-n-splat`, open it in VSCode, ru
 4. User clicks **Approve**
 5. MCP runs `npm install` then `npm run dev` in sandbox; streams output to UI
 6. Audit log entry created with user approval token and snapshot id.
+
+
+## 2. Dev: Full Project Setup in One Prompt
+**User story**  
+> “I want to start a new SaaS backend. Create a Node.js API with auth, connect PostgreSQL, install dependencies, initialize git, and open it in VS Code.”
+
+**MCP flow**
+1. MCP generates project structure from template
+2. Runs `npm install` (dry-run → approve → execute)
+3. Initializes git repo and first commit
+4. Opens VS Code with the project
+5. Logs all actions + snapshot created
+
+**Value**
+- Saves 30–60 minutes
+- Zero context switching
+- Perfect for fast MVPs
+
+---
+
+## 3. Dev: Debug + Fix Loop
+**User story**  
+> “Run tests, find failing ones, show me the error, and suggest a fix.”
+
+**MCP flow**
+1. Runs test command
+2. Parses test output
+3. Highlights failing files + stack traces
+4. LLM suggests fixes
+5. MCP applies patch **only after approval**
+6. Re-runs tests
+
+**Value**
+- Faster debugging
+- No copy-pasting logs
+- Human still in control
+
+---
+
+## 4. Founder: Market Research Automation
+**User story**  
+> “Research 5 competitors for Notexa, summarize features, pricing, and weaknesses, then save it as a markdown file.”
+
+**MCP flow**
+1. Browser automation visits competitor sites
+2. Extracts content
+3. LLM summarizes findings
+4. Saves report to `/founder/market-research/`
+5. Opens the file for review
+
+**Value**
+- Founder-level research in minutes
+- Organized, reusable output
+- Great for pitch decks & strategy
+
+---
+
+## 5. Founder: Daily Planning + Journal
+**User story**  
+> “Create today’s founder plan, based on yesterday’s tasks, and add a reflection note.”
+
+**MCP flow**
+1. Reads yesterday’s notes
+2. Generates today’s task list
+3. Creates a new markdown note
+4. Opens it in the editor
+
+**Value**
+- Clear thinking
+- Consistent planning habit
+- No friction, just vibes
+
+---
+
+## 6. System Control (Sensitive): Shutdown My Computer Now
+**User story**  
+> “Shutdown my computer now.”
+
+**MCP behavior (IMPORTANT)**
+1. MCP detects **critical system action**
+2. Blocks auto-execution
+3. Shows confirmation modal:
+   - “This will shut down your PC immediately”
+4. Requires explicit user approval (YES / CANCEL)
+5. Logs approval + executes shutdown command
+
+**Value**
+- Convenience without risk
+- No accidental shutdowns
+- Full audit trail
+
+---
+
+## 7. System Control (Scheduled): Hibernate My PC in Next 30 Minutes
+**User story**  
+> “Hibernate my PC in next 30 minutes.”
+
+**MCP flow**
+1. MCP parses time-based intent
+2. Creates a scheduled task
+3. Shows confirmation:
+   - Action: Hibernate
+   - Time: +30 minutes
+4. On approval:
+   - Schedules hibernate
+   - Allows cancel anytime
+5. Sends notification 5 minutes before execution
+
+**Value**
+- Smart energy saving
+- Perfect for long builds or downloads
+- Founder-friendly automation
+
+---
+
+## Why These Matter
+These stories show MCP is not just:
+> “AI that runs commands”
+
+It’s:
+- A **thinking assistant**
+- A **safe executor**
+- A **founder productivity weapon**
+
 
 ---
 
