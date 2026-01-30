@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package mcp.policy;
+
+service PolicyService {
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse);
+  rpc SetConfig(SetConfigRequest) returns (SetConfigResponse);
+  rpc RequestApproval(ApprovalRequest) returns (ApprovalResponse);
+}
+
+message GetConfigRequest {}
+
+message GetConfigResponse {
+  repeated string allowed_paths = 1;
+  repeated string whitelisted_commands = 2;
+  bool dry_run_default = 3;
+  bool sandbox_enabled = 4;
+}
+
+message SetConfigRequest {
+  repeated string allowed_paths = 1;
+  repeated string whitelisted_commands = 2;
+  bool dry_run_default = 3;
+  bool sandbox_enabled = 4;
+}
+
+message SetConfigResponse {
+  bool success = 1;
+}
+
+message ApprovalRequest {
+  string action = 1;
+  string description = 2;
+  repeated string affected_paths = 3;
+}
+
+message ApprovalResponse {
+  bool approved = 1;
+  string approval_token = 2;
+  string expires_at = 3;
+}

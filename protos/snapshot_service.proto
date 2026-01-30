@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package mcp.snapshot;
+
+service SnapshotService {
+  rpc Create(CreateSnapshotRequest) returns (CreateSnapshotResponse);
+  rpc Restore(RestoreSnapshotRequest) returns (RestoreSnapshotResponse);
+  rpc List(ListSnapshotsRequest) returns (ListSnapshotsResponse);
+  rpc Delete(DeleteSnapshotRequest) returns (DeleteSnapshotResponse);
+}
+
+message CreateSnapshotRequest {
+  repeated string paths = 1;
+  string label = 2;
+}
+
+message CreateSnapshotResponse {
+  string snapshot_id = 1;
+  string created_at = 2;
+}
+
+message RestoreSnapshotRequest {
+  string snapshot_id = 1;
+  repeated string target_paths = 2;
+}
+
+message RestoreSnapshotResponse {
+  bool success = 1;
+  repeated string restored_paths = 2;
+}
+
+message ListSnapshotsRequest {}
+
+message ListSnapshotsResponse {
+  repeated SnapshotInfo snapshots = 1;
+}
+
+message SnapshotInfo {
+  string id = 1;
+  string label = 2;
+  string created_at = 3;
+  uint32 file_count = 4;
+}
+
+message DeleteSnapshotRequest {
+  string snapshot_id = 1;
+}
+
+message DeleteSnapshotResponse {
+  bool success = 1;
+}

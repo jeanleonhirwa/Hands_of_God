@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package mcp.command;
+
+service CommandService {
+  rpc Run(RunCommandRequest) returns (RunCommandResponse);
+  rpc ListWhitelisted(ListWhitelistedRequest) returns (ListWhitelistedResponse);
+}
+
+message RunCommandRequest {
+  string command = 1;
+  repeated string args = 2;
+  string cwd = 3;
+  bool dry_run = 4;
+  string approval_token = 5;
+  int32 timeout_secs = 6;
+}
+
+message RunCommandResponse {
+  bool dry_run = 1;
+  string command_line = 2;
+  repeated string predicted_effects = 3;
+  string estimated_time = 4;
+  int32 exit_code = 5;
+  string stdout = 6;
+  string stderr = 7;
+  bool success = 8;
+}
+
+message ListWhitelistedRequest {}
+
+message ListWhitelistedResponse {
+  repeated string commands = 1;
+}

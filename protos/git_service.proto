@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package mcp.git;
+
+service GitService {
+  rpc Status(GitStatusRequest) returns (GitStatusResponse);
+  rpc Commit(GitCommitRequest) returns (GitCommitResponse);
+  rpc CreateBranch(CreateBranchRequest) returns (CreateBranchResponse);
+}
+
+message GitStatusRequest {
+  string repo_path = 1;
+}
+
+message GitStatusResponse {
+  string branch = 1;
+  repeated string modified_files = 2;
+  repeated string staged_files = 3;
+  repeated string untracked_files = 4;
+}
+
+message GitCommitRequest {
+  string repo_path = 1;
+  string message = 2;
+  repeated string files = 3;
+  string approval_token = 4;
+}
+
+message GitCommitResponse {
+  bool success = 1;
+  string commit_hash = 2;
+  string diff_summary = 3;
+  repeated string warnings = 4;
+}
+
+message CreateBranchRequest {
+  string repo_path = 1;
+  string branch_name = 2;
+}
+
+message CreateBranchResponse {
+  bool success = 1;
+  string branch_name = 2;
+}

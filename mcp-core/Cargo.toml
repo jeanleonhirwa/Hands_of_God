@@ -1,0 +1,53 @@
+[package]
+name = "mcp-core"
+version = "0.1.0"
+edition = "2021"
+description = "MCP Core Server - Safe, auditable tool execution for LLMs"
+authors = ["MCP Team"]
+license = "MIT"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# gRPC
+tonic = "0.10"
+prost = "0.12"
+prost-types = "0.12"
+
+# Database
+rusqlite = { version = "0.30", features = ["bundled"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Utilities
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.6", features = ["v4", "serde"] }
+sha2 = "0.10"
+hex = "0.4"
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# File system
+walkdir = "2.4"
+glob = "0.3"
+
+# Git operations
+git2 = "0.18"
+
+# System info
+sysinfo = "0.30"
+
+# Process management
+which = "5.0"
+
+[build-dependencies]
+tonic-build = "0.10"
+
+[[bin]]
+name = "mcp-server"
+path = "src/main.rs"
